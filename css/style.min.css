@@ -1,0 +1,232 @@
+@media screen and (max-width: 1280px) {
+    .feedbacks-container {
+        display: none;
+    }
+    .swiper {
+        display: block !important;
+    }
+    .feedback {
+        width: 90%;
+        min-height: 456px;
+        margin: 0 auto;
+    }
+    .feedback-name img {
+        width: 60px;
+        height: 60px;
+    }
+    .feedback-name p {
+        font-size: 18px;
+        margin: 0 0 0 12px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .cards {
+        margin: 0 auto;
+    }
+    .grid {
+        width: fit-content;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0 auto;
+    }
+    .grid .last-line {
+        max-width: 600px;
+        width: 100%;
+        height: fit-content;
+        margin-top: 24px;
+    }
+    .grid .last-line p {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 785px) {
+    .steps-cards-container {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+    }
+    .steps-card img {
+        max-width: 172px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .nav-container .logo {
+        width: 156px;
+        height: 18px;
+    }
+    .nav-button {
+        font-size: 14px;
+        font-weight: 600;
+        width: 144px;
+        height: 32px;
+    }
+
+    header {
+        padding-top: 12px;
+    }
+    .header-title {
+        font-size: 32px;
+        line-height: 38px;
+        font-weight: 600;
+    }
+    .header-title-container {
+        max-width: 310px;
+    }
+    .header-title-container::after {
+        border-radius: 4px;
+        width: 139px;
+        height: 4px;
+        margin: 24px auto 0;
+    }
+
+    .debt-calculator {
+        margin: 12px auto 0;
+    }
+    .debt-calculator h2 {
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .slider-container {
+        margin: 32px auto 0;
+        max-width: 400px;
+    }
+    .slider {
+        width: 124%;
+        height: 20px;
+        margin-left: -12%;
+        border-radius: 12px;
+    }
+    .slider::-webkit-slider-thumb {
+        width: 113px;
+        height: 36px;
+        font-size: 26px;
+    }
+    .slider::-moz-range-thumb {
+        width: 113px;
+        height: 36px;
+        font-size: 26px;
+    }
+    .slider::-moz-range-progress {
+        border-radius: 10px;
+    }
+    .bubble {
+        color: white;
+        padding: 4px 12px;
+        position: absolute;
+        border-radius: 4px;
+        top: 0;
+        left: 0;
+        transform: translateX(-50%);
+        font-size: 16px;
+    }
+
+    .call-button {
+        width: 220px;
+        height: 44px;
+        font-size: 16px;
+        margin-top: 30px;
+    }
+
+    section {
+        width: 90%;
+        margin-top: 80px;
+    }
+    section h2 {
+        font-size: 24px;
+    }
+    section p {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+    section h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    section ul {
+        margin: 0 0 24px 0;
+    }
+    section ul li {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .last-line {
+        padding-left: 8px;
+        border-left: 1px solid rgba(190, 53, 53, 1);
+        margin-top: 24px;
+    }
+    .last-line p {
+        font-size: 16px;
+    }
+
+    br {
+        display: none;
+    }
+
+    .question p {
+        margin: 0 0 0 12px;
+        font-size: 18x;
+    }
+    .answer {
+        margin-top: 14px;
+        font-size: 16px;
+    }
+
+    .bottom-title {
+        font-size: 24px;
+        max-width: 335px;
+    }
+    .bottom-title-container {
+        max-width: 868px;
+        width: 100%;
+    }
+    .bottom-title-container::after {
+        border-radius: 4px;
+        width: 139px;
+        height: 4px;
+        margin: 24px auto 0;
+    }
+    .bottom-caption {
+        font-size: 16px;
+        text-align: left;
+        width: 100%;
+    }
+
+    footer {
+        font-size: 14px;
+        margin-top: 80px;
+    }
+    .footer-top {
+        max-width: 580px;
+        margin-bottom: 14px;
+    }
+    .footer-bottom {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .slider-container {
+        max-width: 240px;
+    }
+    .slider {
+        width: 140%;
+        margin-left: -20%;
+    }
+    .faq-container {
+        min-width: 0;
+    }
+    .swiper {
+        width: 100vw;
+        position: absolute !important;
+        left: 0;
+    }
+    .feedback {
+        min-height: 460px;
+    }
+    .diff {
+        margin-top: 546px !important;
+    }
+}

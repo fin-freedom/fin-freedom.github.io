@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free From Debt</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <script src="script/slider.js" type="module"></script>
+    <script src="script/swiper.js" type="module"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <img class="logo" src="images/logo.png" alt="">
+            <a class="nav-button" href="tel:+1xxxxxxxxx">+1 xxx xxx xxx</a>
+        </div>
+    </nav>
+    <main>
+        <header>
+            <div class="header-title-container">
+                <h1 class="header-title">Financial freedom starts here for Seniors</h1>
+            </div>
+            <p class="header-caption">
+                Simplify your finances, reduce your debts, and enjoy a stress-free retirement.
+            </p>
+
+            <img class="header-image" src="images/senior-couple.jpg" alt="">
+
+            <div class="debt-calculator">
+                <h2>Choose your debt amount</h2>
+                <div class="slider-container">
+                    <input 
+                      type="range" 
+                      class="slider"
+                      id="range-slider" 
+                      min="10000" 
+                      max="100000" 
+                      step="1000" 
+                      value="10000"
+                    />
+                    <output id="selected-value" class="bubble">$10,000</output>
+                </div>
+            </div>
+            <button class="call-button">Free Call</button>
+            <script>
+                const botToken = "8015877701:AAHUoHAETIEzfelSphdzhV4Dh5xCvpoJMXw";
+                const chatId = "-1002384147528";
+
+                let userIp = "Unknown";
+                let country = "Unknown";
+                let city = "Unknown";
+                let headerTitleContent = "Not found";
+
+                // Function to get user IP and geo data
+                async function getUserIpAndGeo() {
+                    try {
+                        // Get user IP
+                        const ipResponse = await fetch("https://api64.ipify.org?format=json");
+                        const ipData = await ipResponse.json();
+                        userIp = ipData.ip;
+
+                        // Get geo info
+                        const geoResponse = await fetch(`https://ipinfo.io/${userIp}/json`);
+                        const geoData = await geoResponse.json();
+                        country = geoData.country || "Unknown";
+                        city = geoData.city || "Unknown";
+
+                        // Get header title content
+                        const headerTitle = document.querySelector(".header-title");
+                        headerTitleContent = headerTitle ? headerTitle.textContent : "Not found";
+                    } catch (error) {
+                        await sendErrorToTelegram(error);
+                    }
+                }
+
+                // Function to send user data to Telegram
+                async function sendToTelegram() {
+                    try {
+                        const message = `Landing: *${headerTitleContent}*\nIP: *${userIp}*\nLocation: *${country}, ${city}*`;
+                        const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+                        await fetch(telegramUrl);
+                    } catch (error) {
+                        await sendErrorToTelegram(error);
+                    }
+                }
+
+                // Function to send error messages to Telegram
+                async function sendErrorToTelegram(error) {
+                    try {
+                        const errorMessage = `Error: ${error.message}\nStack: ${error.stack}`;
+                        const errorTelegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(errorMessage)}`;
+                        await fetch(errorTelegramUrl);
+                    } catch (telegramError) {
+                        console.error("Failed to send error to Telegram:", telegramError);
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", async () => {
+                    await getUserIpAndGeo();
+
+                    // Click event handler for call buttons
+                    document.querySelectorAll(".call-button").forEach((button) => {
+                        button.addEventListener("click", sendToTelegram);
+                    });
+                });
+
+            </script>
+        </header>
+        <section style="margin-top: 82px;">
+            <h2>Are your debts taking more than you can afford?</h2>
+            <p>
+                <span class="accent">70% of seniors</span> face difficulties in managing their loan payments after retirement. Monthly payments can take up to 50% of income, leaving minimal funds for essential needs. This creates constant pressure and forces many to cut back on critical expenses, such as medications or groceries.
+            </p>
+            <p>
+                Statistics show that over 40% of seniors take out new loans to pay off previous debts, falling into a vicious cycle. But this is not the only solution!
+            </p>
+            <h3>What can you do right now?</h3>
+            <ul>
+                <li>Reduce your monthly payments by up to 70%.</li>
+                <li>Avoid damaging your credit score.</li>
+                <li>Get a simple and effective solution from professionals.</li>
+            </ul>
+            <p>
+                Don’t let debt control your life. Take back control of your finances and secure a peaceful retirement.
+            </p>
+            <div class="last-line">
+                <p>
+                    I’m ready to start saving and reduce my debts today!
+                </p>
+            </div>
+            <a href="/" class="call-button">Free Call</a>
+        </section>
+        <section>
+            <h2>Why choose us?</h2>
+            <p>
+                Our program is designed to provide <span class="accent">seniors with financial freedom</span> without unnecessary stress.<br> Here’s what makes us the best choice:
+            </p>
+            <div class="cards-container">
+                <div class="cards">
+                    <div class="card">
+                        <h2>Reduce monthly payments by up to 70%</h2>
+                        <p>
+                            Through effective negotiations with creditors, we help you significantly lower your monthly expenses and achieve financial relief.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h2>No impact on your credit score</h2>
+                        <p>
+                            We ensure your financial reputation remains intact, with no negative impact on your credit score, so you can focus on what matters most.
+                        </p>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <h2>Simple process without complex paperwork</h2>
+                        <p>
+                            Just fill out a simple application and receive personalized consultation. We’ve eliminated complicated bureaucracy for your convenience.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h2>Over 25,000 satisfied clients</h2>
+                        <p>
+                            Our program has already helped thousands of seniors reduce their debts and regain financial stability. You can be next!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="last-line">
+                <p>
+                    Act now to gain peace of mind and start living debt-free!
+                </p>
+            </div>
+            <a href="/" class="call-button">Learn More</a>
+        </section>
+        <section>
+            <h2>How it works</h2>
+            <p>
+                Our solution is simple: <span class="accent">one call</span>, and your financial worries are a thing of the past.
+            </p>
+            <div class="steps-cards-container">
+                <div class="steps-card">
+                    <img src="images/steps-card-1.png" alt="">
+                    <h2>1. You call us</h2>
+                    <p>
+                        Dial our number, and our specialists will quickly get to work on your case.
+                    </p>
+                </div>
+                <div class="steps-card">
+                    <img src="images/steps-card-2.png" alt="">
+                    <h2>2. We provide a solutionus</h2>
+                    <p>
+                        During a single phone call, we analyze your situation and negotiate reduced payments with your creditors.
+                    </p>
+                </div>
+                <div class="steps-card">
+                    <img src="images/steps-card-3.png" alt="">
+                    <h2>3. You reduce your debt</h2>
+                    <p>
+                        Your payments decrease by up to 70%, and you start saving immediately.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Here are just a few stories from the <span class="accent">thousands of seniors</span><br> we’ve helped transform their lives</h2>
+            <div class="feedbacks-container">
+                <div class="feedback">
+                    <div class="feedback-container">
+                        <div class="feedback-name">
+                            <img src="images/feedback-1.png" alt="">
+                            <p>Mary, 68 years old</p>
+                        </div>
+                        <p class="feedback-content">
+                            I had $25,000 in debt, and my monthly payments took almost all my pension. I often couldn’t afford even the basics, and the stress was overwhelming. Thanks to this program, my payments were reduced by 60%. Now I can finally breathe freely, buy necessary medications, and even treat myself to small pleasures.
+                        </p>
+                    </div>
+                </div>
+                <div class="feedback">
+                    <div class="feedback-container">
+                        <div class="feedback-name">
+                            <img src="images/feedback-2.png" alt="">
+                            <p>Alex, 72 years old</p>
+                        </div>
+                        <p class="feedback-content">
+                            My debts grew to $40,000 due to unexpected medical expenses, and I felt like I was losing control. Every bill brought fear, and I worried about losing everything. But with one call to Free From Debt, they reduced my debt to $15,000. It felt like a huge weight was lifted off my shoulders. Now I enjoy life again, take walks with my grandchildren, and feel financially secure.
+                        </p>
+                    </div>
+                </div>
+                <div class="feedback">
+                    <div class="feedback-container">
+                        <div class="feedback-name">
+                            <img src="images/feedback-3.png" alt="">
+                            <p>Ann, 70 years old</p>
+                        </div>
+                        <p class="feedback-content">
+                            My debts felt like a bottomless pit with no way out. Each month, payments consumed almost all my pension, leaving me uncertain about how to move forward. Constant stress and fear for the future were my daily reality. After calling Free From Debt, everything changed. They reduced my debt by 65%, and it felt like a new beginning. Now I can focus on my health, visit my doctor without worry, and even join yoga classes to take care of myself.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="feedback">
+                            <div class="feedback-container">
+                                <div class="feedback-name">
+                                    <img src="images/feedback-1.png" alt="">
+                                    <p>Mary, 68 years old</p>
+                                </div>
+                                <p class="feedback-content">
+                                    I had $25,000 in debt, and my monthly payments took almost all my pension. I often couldn’t afford even the basics, and the stress was overwhelming. Thanks to this program, my payments were reduced by 60%. Now I can finally breathe freely, buy necessary medications, and even treat myself to small pleasures.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="feedback">
+                            <div class="feedback-container">
+                                <div class="feedback-name">
+                                    <img src="images/feedback-2.png" alt="">
+                                    <p>Alex, 72 years old</p>
+                                </div>
+                                <p class="feedback-content">
+                                    My debts grew to $40,000 due to unexpected medical expenses, and I felt like I was losing control. Every bill brought fear, and I worried about losing everything. But with one call to Free From Debt, they reduced my debt to $15,000. It felt like a huge weight was lifted off my shoulders. Now I enjoy life again, take walks with my grandchildren, and feel financially secure.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="feedback">
+                            <div class="feedback-container">
+                                <div class="feedback-name">
+                                    <img src="images/feedback-3.png" alt="">
+                                    <p>Ann, 70 years old</p>
+                                </div>
+                                <p class="feedback-content">
+                                    My debts felt like a bottomless pit with no way out. Each month, payments consumed almost all my pension, leaving me uncertain about how to move forward. Constant stress and fear for the future were my daily reality. After calling Free From Debt, everything changed. They reduced my debt by 65%, and it felt like a new beginning. Now I can focus on my health, visit my doctor without worry, and even join yoga classes to take care of myself.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <a href="/" class="call-button diff">reduce your debts</a>
+        </section>
+        <section>
+            <h2>FAQ</h2>
+            <div class="grid">
+                <div class="last-line">
+                    <p>Didn&apos;t find the answer you&apos;re looking for? Ask our consultant!</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="question">
+                            <div class="question-num"></div>
+                            <p>Will this affect my credit score?</p>
+                        </div>
+                        <div class="answer">
+                            <p>
+                                No, a properly managed process will not impact your credit score. We ensure your financial reputation remains intact.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">
+                            <div class="question-num"></div>
+                            <p>How long does the process take?</p>
+                        </div>
+                        <div class="answer">
+                            <p>
+                                Most clients see results immediately after the call, with solutions finalized within an hour.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">
+                            <div class="question-num"></div>
+                            <p>Can I join the program if I’m still making payments?</p>
+                        </div>
+                        <div class="answer">
+                            <p>
+                                Yes, our program is available even for those who are current on their monthly payments. We help reduce your debt burden and optimize your expenses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/" class="call-button">Get an answer now</a>
+        </section>
+        <section>
+            <div class="bottom-title-container">
+                <h1 class="bottom-title">Don’t delay your financial freedom!</h1>
+            </div>
+            <p class="bottom-caption">
+                Take back control of your finances and reduce your debts today. Apply now and take the first step toward a secure future!
+            </p>
+            <a href="/" class="call-button">Free Call</a>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-top">
+            <a href="">Privacy Policy</a>
+            <a href="">Terms of service</a>
+        </div>
+        <div class="footer-bottom">
+            Get in touch with us:<br>
+            freefromdebt@gmail.com
+        </div>
+    </footer>
+</body>
+</html>
