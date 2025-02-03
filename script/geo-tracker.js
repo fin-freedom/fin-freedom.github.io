@@ -5,6 +5,33 @@ let userIp = "Unknown";
 let country = "Unknown";
 let city = "Unknown";
 let headerTitleContent = "Not found";
+let currentDate = new Date().toLocaleDateString("en-GB", {
+    timeZone: "Europe/Kiev",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+});
+
+let currentTime = new Date().toLocaleTimeString("en-GB", {
+    timeZone: "Europe/Kiev",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+});
+
+function formatDateTime() {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0');  // День с ведущим нулем
+    const month = String(date.getMonth() + 1).padStart(2, '0');  // Месяц с ведущим нулем
+    const year = date.getFullYear();  // Год
+    const hours = String(date.getHours()).padStart(2, '0');  // Часы с ведущим нулем
+    const minutes = String(date.getMinutes()).padStart(2, '0');  // Минуты с ведущим нулем
+    const seconds = String(date.getSeconds()).padStart(2, '0');  // Секунды с ведущим нулем
+
+    return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+}
+
+let currentDateTime = formatDateTime();
 
 // Function to get user IP and geo data
 async function getUserIpAndGeo() {
@@ -20,6 +47,9 @@ async function getUserIpAndGeo() {
         country = geoData.country || "Unknown";
         city = geoData.city || "Unknown";
 
+        // Get user agent
+        userAgent = navigator.userAgent || 'Unknown';
+
         // Get header title content
         const headerTitle = document.querySelector(".header-title");
         headerTitleContent = headerTitle ? headerTitle.textContent : "Not found";
@@ -31,7 +61,7 @@ async function getUserIpAndGeo() {
 // Function to send user data to Telegram
 async function sendToTelegram() {
     try {
-        const message = `Landing: *${headerTitleContent}*\nIP: *${userIp}*\nLocation: *${country}, ${city}*`;
+        const message = `Landing: *${headerTitleContent}*\nIP: *${userIp}*\nLocation: *${country}, ${city}* \nUser agent: *${userAgent}* \nDate: *${currentDateTime}*`;
         const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
 
         await fetch(telegramUrl);
