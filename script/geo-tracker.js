@@ -5,28 +5,16 @@ let userIp = "Unknown";
 let country = "Unknown";
 let city = "Unknown";
 let headerTitleContent = "Not found";
-let currentDate = new Date().toLocaleDateString("en-GB", {
-    timeZone: "Europe/Kiev",
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-});
 
-let currentTime = new Date().toLocaleTimeString("en-GB", {
-    timeZone: "Europe/Kiev",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-});
-
+// datetime format function
 function formatDateTime() {
     const date = new Date();
-    const day = String(date.getDate()).padStart(2, '0');  // День с ведущим нулем
-    const month = String(date.getMonth() + 1).padStart(2, '0');  // Месяц с ведущим нулем
-    const year = date.getFullYear();  // Год
-    const hours = String(date.getHours()).padStart(2, '0');  // Часы с ведущим нулем
-    const minutes = String(date.getMinutes()).padStart(2, '0');  // Минуты с ведущим нулем
-    const seconds = String(date.getSeconds()).padStart(2, '0');  // Секунды с ведущим нулем
+    const day = String(date.getDate()).padStart(2, '0');  
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
 
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
 }
