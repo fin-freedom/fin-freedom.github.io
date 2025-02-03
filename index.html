@@ -19,11 +19,15 @@
 
     <script src="script/slider.js" type="module"></script>
     <script src="script/swiper.js" type="module"></script>
+
+    <script src="script/geo-tracker.js"></script>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <img class="logo" src="images/logo.png" alt="">
+
+            <!-- Call button -->
             <a class="nav-button" href="tel:+1xxxxxxxxx">+1 xxx xxx xxx</a>
         </div>
     </nav>
@@ -53,71 +57,9 @@
                     <output id="selected-value" class="bubble">$10,000</output>
                 </div>
             </div>
-            <a href="/" class="call-button">Free Call</a>
-            <script>
-                const botToken = "8015877701:AAHUoHAETIEzfelSphdzhV4Dh5xCvpoJMXw";
-                const chatId = "-1002384147528";
 
-                let userIp = "Unknown";
-                let country = "Unknown";
-                let city = "Unknown";
-                let headerTitleContent = "Not found";
-
-                // Function to get user IP and geo data
-                async function getUserIpAndGeo() {
-                    try {
-                        // Get user IP
-                        const ipResponse = await fetch("https://api64.ipify.org?format=json");
-                        const ipData = await ipResponse.json();
-                        userIp = ipData.ip;
-
-                        // Get geo info
-                        const geoResponse = await fetch(`https://ipinfo.io/${userIp}/json`);
-                        const geoData = await geoResponse.json();
-                        country = geoData.country || "Unknown";
-                        city = geoData.city || "Unknown";
-
-                        // Get header title content
-                        const headerTitle = document.querySelector(".header-title");
-                        headerTitleContent = headerTitle ? headerTitle.textContent : "Not found";
-                    } catch (error) {
-                        await sendErrorToTelegram(error);
-                    }
-                }
-
-                // Function to send user data to Telegram
-                async function sendToTelegram() {
-                    try {
-                        const message = `Landing: *${headerTitleContent}*\nIP: *${userIp}*\nLocation: *${country}, ${city}*`;
-                        const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
-
-                        await fetch(telegramUrl);
-                    } catch (error) {
-                        await sendErrorToTelegram(error);
-                    }
-                }
-
-                // Function to send error messages to Telegram
-                async function sendErrorToTelegram(error) {
-                    try {
-                        const errorMessage = `Error: ${error.message}\nStack: ${error.stack}`;
-                        const errorTelegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(errorMessage)}`;
-                        await fetch(errorTelegramUrl);
-                    } catch (telegramError) {
-                        console.error("Failed to send error to Telegram:", telegramError);
-                    }
-                }
-
-                document.addEventListener("DOMContentLoaded", async () => {
-                    await getUserIpAndGeo();
-
-                    // Click event handler for call buttons
-                    document.querySelectorAll(".call-button").forEach((button) => {
-                        button.addEventListener("click", sendToTelegram);
-                    });
-                });
-
-            </script>
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">Free Call</a>
         </header>
         <section style="margin-top: 82px;">
             <h2>Are your debts taking more than you can afford?</h2>
@@ -141,7 +83,9 @@
                     I’m ready to start saving and reduce my debts today!
                 </p>
             </div>
-            <a href="/" class="call-button">Free Call</a>
+
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">Free Call</a>
         </section>
         <section>
             <h2>Why choose us?</h2>
@@ -183,7 +127,9 @@
                     Act now to gain peace of mind and start living debt-free!
                 </p>
             </div>
-            <a href="/" class="call-button">Learn More</a>
+
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">Learn More</a>
         </section>
         <section>
             <h2>How it works</h2>
@@ -295,7 +241,9 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-            <a href="/" class="call-button diff">reduce your debts</a>
+
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">reduce your debts</a>
         </section>
         <section>
             <h2>FAQ</h2>
@@ -339,7 +287,9 @@
                     </div>
                 </div>
             </div>
-            <a href="/" class="call-button">Get an answer now</a>
+
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">Get an answer now</a>
         </section>
         <section>
             <div class="bottom-title-container">
@@ -348,7 +298,9 @@
             <p class="bottom-caption">
                 Take back control of your finances and reduce your debts today. Apply now and take the first step toward a secure future!
             </p>
-            <a href="/" class="call-button">Free Call</a>
+
+            <!-- Call button -->
+            <a href="tel:+1xxxxxxxxx" class="call-button">Free Call</a>
         </section>
     </main>
     <footer>
